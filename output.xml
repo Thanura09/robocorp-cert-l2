@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.7.5 on win32)" generated="20220608 13:00:36.862" rpa="false" schemaversion="3">
+<suite id="s1" name="Robot Interactive Console" source="c:\Users\thanu\.vscode\extensions\robocorp.robotframework-lsp-0.48.2\src\robotframework_ls\vendored\robotframework_interactive\robot_interactive_console.robot">
+<test id="s1-t1" name="Default Task/Test" line="5">
+<kw name="Interpreter Main Loop" library="MainLoop">
+<kw name="rcc run">
+<msg timestamp="20220608 13:00:55.401" level="FAIL">No keyword with name 'rcc run' found.</msg>
+<status status="FAIL" starttime="20220608 13:00:55.401" endtime="20220608 13:00:55.401"/>
+</kw>
+<status status="PASS" starttime="20220608 13:00:36.901" endtime="20220608 13:01:52.632"/>
+</kw>
+<status status="PASS" starttime="20220608 13:00:36.900" endtime="20220608 13:01:52.633"/>
+</test>
+<status status="PASS" starttime="20220608 13:00:36.864" endtime="20220608 13:01:52.634"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robot Interactive Console">Robot Interactive Console</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
