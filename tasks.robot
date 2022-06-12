@@ -15,7 +15,7 @@ Library    RPA.Tables
 Order Robots from RoboSpareBin Inc.
     Open the order robot page
     Download orders excel file
-    Read Excel File as table and submit for one order
+    Place orders
     # Create order for each row save PDF and SS and combine 
 
 
@@ -33,25 +33,49 @@ Download orders excel file
 
 Get orders
     ${orders}=    Read table from CSV    orders.csv
-    FOR    ${order}    IN    @{orders}
-        # Log    ${order}[Head]
-        # Select From List By Value    //*[@id="head"]/option[int(${order}[Head])]
-        Select Radio Button    body    ${order}[Body]    
-        # Input Text    1654923526208    ${order}[Legs]
-        Input Text    address    ${order}[Address]
-        Click Button    preview    
-    END
+    [Return]    ${orders}
+    
     
 
-Read Excel File as table and submit for one order
-    Get orders
-    # Select From List By Value    //*[@id="head"]/option[${orders}[Head]]
-    # Select Radio Button    body    ${orders}[Body]    
-    # Input Text    1654923526208    ${orders}[Legs]
-    # Input Text    address    ${orders}[Address]
-    # Click Button    preview
+Place orders
+    ${orderList}=    Get orders
+    Log    ${orderList}
+    Fill Form    @{orderList}
+    
+    
 
-Create order for each row save PDF and SS and combine
+Fill Form
+    [Arguments]    @{orderList}
+    Click Element If Visible    //button[@class="btn btn-dark"]
+    FOR    ${order}    IN    @{orderList}
+        # Log    type(int(${order}[Head]))
+        # Log    ${order}[Legs]
+        Select From List By Value    head    ${order}[Head]    
+        Select Radio Button    body    ${order}[Body]    
+        Input Text    class:form-control    ${order}[Legs]
+        Input Text    address    ${order}[Address]
+        Preview Robot
+        Submit the order
+        ${pdf}=    Store the recipt as a PDF file    ${order}[Order number]
+        ${screenshot}=    Take a screenshot of the robot    ${order}[Order number]
+
+    END
+
+Preview Robot
+    Click Button    preview
+
+Submit the order
+    Click Button    order
+
+Store the recipt as a PDF file    ${orderNum}
+[Arguments]    ${orderNumber}
+
+    
+Take a screenshot of the robot    ${orderNum}
+
+Embed the screenshot to the PDF recipt
+
+
  
     
 
